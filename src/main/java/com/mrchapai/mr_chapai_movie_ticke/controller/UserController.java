@@ -1,6 +1,8 @@
 package com.mrchapai.mr_chapai_movie_ticke.controller;
 
 import com.mrchapai.mr_chapai_movie_ticke.entity.User;
+import com.mrchapai.mr_chapai_movie_ticke.exceptionHandler.ControllerExceptionHandler;
+import com.mrchapai.mr_chapai_movie_ticke.exceptionHandler.ResourceNotFound;
 import com.mrchapai.mr_chapai_movie_ticke.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -14,6 +16,12 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+@GetMapping("/")
+public String homePage(){
+    return "shubash Dai";
+}
+
+
 
     @GetMapping("/users")
     public List<User> getUsers(){
@@ -22,12 +30,13 @@ public class UserController {
 
     @GetMapping("/user/{id}")
     public User getUser(@PathVariable ("id") int id){
-        return userService.getUser(id);
+                return userService.getUser(id);
     }
 
+
     @PostMapping("/addUser")
-    public User addUser(@RequestBody User usr){
-        return userService.saveUser(usr);
+    public User  addUser(@RequestBody User usr){
+         return userService.saveUser(usr);
     }
 
 
